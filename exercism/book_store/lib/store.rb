@@ -29,6 +29,19 @@ class Store
     @books.delete_if { |b| b.title == title }
   end
 
-  
+  def discounts
+    @_discounts = {
+      dis1: 0.00,
+      dis2: 0.05,
+      dis3: 0.10,
+      dis4: 0.20,
+      dis5: 0.25,
+    }
+  end
+
+  def promo(term)
+    value  = discounts[term]
+    adjust = (1 - value).round(2)
+  end
 
 end

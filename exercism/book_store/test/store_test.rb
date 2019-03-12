@@ -51,5 +51,25 @@ class StoreTest < Minitest::Test
     assert_equal(store.books.count, 0 )
   end
 
+  def test_it_can_return_a_hash_of_discounts
+    store     = Store.new
+    discounts = store.discounts
+    assert_instance_of(Hash, discounts)
+    assert_equal(discounts[:dis1], 0.00)
+    assert_equal(discounts[:dis2], 0.05)
+    assert_equal(discounts[:dis3], 0.10)
+    assert_equal(discounts[:dis4], 0.20)
+    assert_equal(discounts[:dis5], 0.25)
+  end
+
+  def test_it_can_calculate_a_promo_multiplier
+    store = Store.new
+    assert_equal(store.promo(:dis1), 1.00)
+    assert_equal(store.promo(:dis2), 0.95)
+    assert_equal(store.promo(:dis3), 0.90)
+    assert_equal(store.promo(:dis4), 0.80)
+    assert_equal(store.promo(:dis5), 0.75)
+  end
+
 
 end
