@@ -1,5 +1,5 @@
 
-require './exercism/book_store/test/test_helper'
+require './test_helper'
 
 require './exercism/book_store/lib/book'
 
