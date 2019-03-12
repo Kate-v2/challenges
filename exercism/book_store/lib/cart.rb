@@ -17,5 +17,8 @@ class Cart
     @cart.push(book)
   end
 
+  def browse(collection)
+    collection.sample
+  end
 
 end

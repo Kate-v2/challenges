@@ -19,5 +19,23 @@ class CartTest < Minitest::Test
     assert_equal(cart.cart.empty?, true)
   end
 
+  def test_it_can_add_a_book
+    cart = Cart.new
+    cart.add_book(@book)
+    assert_equal(cart.cart.count, 1)
+    assert_equal(cart.cart.first.class, Book)
+  end
+
+  def test_it_can_browse_a_collection_of_books_and_return_a_single_book
+    cart = Cart.new
+    # -- collection of books --
+    hash2 = { title: 'Title2', cost: 8 }
+    hash3 = { title: 'Title3', cost: 8 }
+    collection = [@book, Book.new(hash2), Book.new(hash3)]
+    assert_equal(collection.count, 3)
+    # -- selecting a book --
+    book = cart.browse(collection)
+    assert_instance_of(Book, book)
+  end
 
 end
